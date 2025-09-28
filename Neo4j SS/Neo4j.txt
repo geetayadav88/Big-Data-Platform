@@ -1,0 +1,199 @@
+Match (n) detach delete n
+
+CREATE (album1:Album {Title:"GreatestHits"}),
+
+CREATE(1stsong:song {Title:"Titanic",Length:'3min47sec'}),
+CREATE(2ndsong:song {Title:"Sanorita",Length:'2min50sec'}),
+(3rdsong:song {Title:"Cold",Length:'2min50sec'}),
+(4thsong:song {Title:"Luv me like you do",Length:'3min46sec'}),
+
+Query1
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})-[:AppearsOn]->(song1:song {Title:"Titanic",Length:'3.47'}),
+(album1)-[:AppearsOn]->(song2:song {Title:"Sanorita",Length:'2.50'}),
+(album1)-[:AppearsOn]->(song3:song {Title:"Cold",Length:'2.50'}),
+(album1)-[:AppearsOn]->(song4:song {Title:"Luv me like you do",Length:'3.46'})
+RETURN album1,song1,song2,song3,song4
+
+Query2
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})
+CREATE (song1st:song {Title:"Titanic",Length:'3.47'})-[:AppearsOn]->(album1)
+CREATE (song2nd:song {Title:"Sanorita",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song3rd:song {Title:"Cold",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song4th:song {Title:"Luv me like you do",Length:'3.46'})-[:AppearsOn]->(album1)
+create (Artst1:Artist {Name:"Celine Dion"})-[:PerformedOn{Performance_Type:"Singer"}]->(song1st)
+create (Artst2:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song1st)
+create (Artst3:Artist {Name:"Tom Cruise"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song1st)
+create (Artst2)-[:Writenby]->(song1st)
+RETURN album1,song1st,song2nd,song3rd,song4th,Artst1,Artst2,Artst3
+
+Query3
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})
+CREATE (song1st:song {Title:"Titanic",Length:'3.47'})-[:AppearsOn]->(album1)
+CREATE (song2nd:song {Title:"Sanorita",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song3rd:song {Title:"Closer",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song4th:song {Title:"Luv me like you do",Length:'3.46'})-[:AppearsOn]->(album1)
+create (Artst1:Artist {Name:"Celine Dion"})-[:PerformedOn{Performance_Type:"Singer"}]->(song1st)
+create (Artst2:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song1st)
+create (Artst3:Artist {Name:"Tom Cruise"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song1st)
+create (Artst2)-[:Writenby]->(song1st)
+create (Artst4:Artist {Name:"Halsey"})-[:PerformedOn{Performance_Type:"Singer"}]->(song2nd)
+create (Artst5:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song2nd)
+create (Artst6:Artist {Name:"Monty"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song2nd)
+create (Artst4)-[:Writenby]->(song2nd)
+create (Artst4:Artist {Name:"Halsey"})-[:PerformedOn{Performance_Type:"Singer"}]->(song2nd)
+create (Artst5:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song2nd)
+create (Artst6:Artist {Name:"Monty"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song2nd)
+create (Artst4)-[:Writenby]->(song2nd)
+RETURN album1,song1st,song2nd,song3rd,song4th,Artst1,Artst2,Artst3,Artst4,Artst5,Artst6
+
+Full Query Album one
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})
+CREATE (song1st:song {Title:"Titanic",Length:3.47})-[:AppearsOn]->(album1)
+CREATE (song2nd:song {Title:"Sanorita",Length:2.50})-[:AppearsOn]->(album1)
+CREATE (song3rd:song {Title:"Closer",Length:2.50})-[:AppearsOn]->(album1)
+CREATE (song4th:song {Title:"Luv me like you do",Length:3.46})-[:AppearsOn]->(album1)
+create (Artst1:Artist {Name:"Celine Dion"})-[:PerformedOn{Performance_Type:"Singer"}]->(song1st)
+create (Artst2:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song1st)
+create (Artst3:Artist {Name:"Tom Cruise"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song1st)
+create (Artst2)-[:Writenby]->(song1st)
+create (Artst4:Artist {Name:"Halsey"})-[:PerformedOn{Performance_Type:"Singer"}]->(song2nd)
+create (Artst5:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song2nd)
+create (Artst6:Artist {Name:"Monty"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song2nd)
+create (Artst4)-[:Writenby]->(song2nd)
+create (Artst7:Artist {Name:"Maroom5"})-[:PerformedOn{Performance_Type:"Singer"}]->(song3rd)
+create (Artst8:Artist {Name:"Rocky"})-[:PerformedOn{Performance_Type:"Violinist"}]->(song3rd)
+create (Artst9:Artist {Name:"Sam"})-[:PerformedOn{Performance_Type:"Trumpist"}]->(song3rd)
+create (Artst7)-[:Writenby]->(song3rd)
+create (Artst10:Artist {Name:"Ellie Goulding"})-[:PerformedOn{Performance_Type:"Singer"}]->(song4th)
+create (Artst11:Artist {Name:"Niel"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song4th)
+create (Artst12:Artist {Name:"Sam"})-[:PerformedOn{Performance_Type:"TromBonist"}]->(song4th)
+create (Artst10)-[:Writenby]->(song4th)
+RETURN album1,song1st,song2nd,song3rd,song4th,Artst1,Artst2,Artst3,Artst4,Artst5,Artst6,Artst7,Artst8,Artst9,Artst10,Artst11,Artst12
+
+
+Album 2
+
+
+CREATE (album2:SongsAlbum {Title:"ForeverMemories"})
+CREATE (song5th:song {Title:"Let me luv you",Length:2.55})-[:AppearsOn]->(album2)
+CREATE (song6th:song {Title:"Amplifier",Length:3.40})-[:AppearsOn]->(album2)
+CREATE (song7th:song {Title:"Hip's dont lie",Length:3.50})-[:AppearsOn]->(album2)
+CREATE (song8th:song {Title:"Believer",Length:3.25})-[:AppearsOn]->(album2)
+create (Artst13:Artist {Name:"Justin Biever"})-[:PerformedOn{Performance_Type:"Singer"}]->(song5th)
+create (Artst14:Artist {Name:"Charles"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song5th)
+create (Artst15:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song5th)
+create (Artst15)-[:Writenby]->(song5th)
+create (Artst16:Artist {Name:"Dilijit"})-[:PerformedOn{Performance_Type:"Singer"}]->(song6th)
+create (Artst17:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song6th)
+create (Artst18:Artist {Name:"Peter"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song6th)
+create (Artst16)-[:Writenby]->(song6th)
+create (Artst19:Artist {Name:"Shakira"})-[:PerformedOn{Performance_Type:"Singer"}]->(song7th)
+create (Artst20:Artist {Name:"Rohan"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song7th)
+create (Artst21:Artist {Name:"Joseph"})-[:PerformedOn{Performance_Type:"Tubist"}]->(song7th)
+create (Artst19)-[:Writenby]->(song7th)
+create (Artst22:Artist {Name:"Imagine Dragon"})-[:PerformedOn{Performance_Type:"Singer"}]->(song8th)
+create (Artst23:Artist {Name:"Niel"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song8th)
+create (Artst24:Artist {Name:"David"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song8th)
+create (Artst23)-[:Writenby]->(song8th)
+RETURN album1,album2,song1st,song2nd,song3rd,song4th,song5th,song6th,song7th,song8th,Artst1,Artst2,Artst3,Artst4,Artst5,Artst6,Artst7,Artst8,Artst9,Artst10,Artst11,Artst12,Artst13,Artst14,Artst15,Artst16,Artst17,Artst18,Artst19,Artst20,Artst21,Artst22,Artst23,Artst24
+
+
+
+
+
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})
+CREATE (song1:song {Title:"Titanic",Length:'3.47'})-[:AppearsOn]->(album1)
+CREATE (song2:song {Title:"Sanorita",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song3:song {Title:"Cold",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song4:song {Title:"Luv me like you do",Length:'3.46'})-[:AppearsOn]->(album1)
+RETURN album1,song1,song2,song3,song4
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})
+CREATE (song1:song {Title:"Titanic",Length:'3.47'})-[:AppearsOn]->(album1)
+CREATE (song2:song {Title:"Sanorita",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song3:song {Title:"Cold",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song4:song {Title:"Luv me like you do",Length:'3.46'})-[:AppearsOn]->(album1)
+create (Artst1:Artist {Name:"Celine Dion"})-[:PerformedOn{Performance_Type:"Singer"}]->(song1)
+
+CREATE (album1:SongsAlbum {Title:"GreatestHits"})
+CREATE (song1st:song {Title:"Titanic",Length:'3.47'})-[:AppearsOn]->(album1)
+CREATE (song2nd:song {Title:"Sanorita",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song3rd:song {Title:"Cold",Length:'2.50'})-[:AppearsOn]->(album1)
+CREATE (song4th:song {Title:"Luv me like you do",Length:'3.46'})-[:AppearsOn]->(album1)
+RETURN album1,song1st,song2nd,song3rd,song4th
+
+RETURN album1,song1,song2,song3,song4
+
+
+(album2:Album {Title:"UnstoppableSongs"}),
+(5thsong:song {Title:"Let me luv you",Length:'2min55sec'}),
+(6thsong:song {Title:"Amplifier",Length:'3min40sec'}),
+(7thsong:song {Title:"Hip's dont lie",Length:'3min50sec'}),
+(8thsong:song {Title:"Believer",Length:'3min25sec'}),
+
+
+Artist
+
+(Artst1:Artist {Name:"Celine Dion"}),
+
+
+
+(Arts2:Artist {Name:"Diana"}),
+(Arts3:Artist {Name:"Piano"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+(Artst1:Artist {Name:"Celine Dion"}),
+
+
+CREATE (album2:SongsAlbum {Title:"ForeverMemories"})
+CREATE (song5th:song {Title:"Let me luv you",Length:2.55})-[:AppearsOn]->(album2)
+CREATE (song6th:song {Title:"Amplifier",Length:3.40})-[:AppearsOn]->(album2)
+CREATE (song7th:song {Title:"Hip's dont lie",Length:3.50})-[:AppearsOn]->(album2)
+CREATE (song8th:song {Title:"Believer",Length:3.25})-[:AppearsOn]->(album2)
+create (Artst13:Artist {Name:"Justin Biever"})-[:PerformedOn{Performance_Type:"Singer"}]->(song5th)
+create (Artst14:Artist {Name:"Charles"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song5th)
+create (Artst15:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song5th)
+create (Artst15)-[:Writenby]->(song5th)
+create (Artst16:Artist {Name:"Dilijit"})-[:PerformedOn{Performance_Type:"Singer"}]->(song6th)
+create (Artst17:Artist {Name:"Jack"})-[:PerformedOn{Performance_Type:"Guitarist"}]->(song6th)
+create (Artst18:Artist {Name:"Peter"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song6th)
+create (Artst16)-[:Writenby]->(song6th)
+create (Artst19:Artist {Name:"Shakira"})-[:PerformedOn{Performance_Type:"Singer"}]->(song7th)
+create (Artst20:Artist {Name:"Rohan"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song7th)
+create (Artst21:Artist {Name:"Joseph"})-[:PerformedOn{Performance_Type:"Tubist"}]->(song7th)
+create (Artst19)-[:Writenby]->(song7th)
+create (Artst22:Artist {Name:"Imagine Dragon"})-[:PerformedOn{Performance_Type:"Singer"}]->(song8th)
+create (Artst23:Artist {Name:"Niel"})-[:PerformedOn{Performance_Type:"Pianist"}]->(song8th)
+create (Artst24:Artist {Name:"David"})-[:PerformedOn{Performance_Type:"Drummer"}]->(song8th)
+create (Artst23)-[:Writenby]->(song8th)
+RETURN album2,song5th,song6th,song7th,song8th,Artst13,Artst14,Artst15,Artst16,Artst17,Artst18,Artst19,Artst20,Artst21,Artst22,Artst23,Artst24
